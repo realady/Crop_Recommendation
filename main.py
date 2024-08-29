@@ -6,9 +6,9 @@ import numpy as np
 app = FastAPI()
 
 # Load the model and scalers
-model = pickle.load(open('app/model.pkl', 'rb'))
-minmax_scaler = pickle.load(open('app/minmaxscaler.pkl', 'rb'))
-standard_scaler = pickle.load(open('app/standscaler.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
+minmax_scaler = pickle.load(open('minmaxscaler.pkl', 'rb'))
+standard_scaler = pickle.load(open('standscaler.pkl', 'rb'))
 
 # Define the input data model
 class SoilData(BaseModel):
