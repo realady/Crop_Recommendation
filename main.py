@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import pickle
 import numpy as np
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -27,6 +28,15 @@ crop_dict = {
     14: 'pomegranate', 15: 'lentil', 16: 'blackgram', 17: 'mungbean', 18: 'mothbeans',
     19: 'pigeonpeas', 20: 'kidneybeans', 21: 'chickpea', 22: 'coffee'
 }
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Update this list with allowed origins as needed
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.post("/predict")
 async def predict_crop(data: SoilData):
